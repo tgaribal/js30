@@ -7,6 +7,19 @@
 </head>
 <body>
 <script>
+  const secretCode = 'tim';
+  let pressedKeys = [];
+
+  window.addEventListener('keyup', (e) => {
+    pressedKeys.push(e.key)
+    pressedKeys = pressedKeys.slice(-secretCode.length);
+
+    if(pressedKeys.join('')===secretCode) {
+      console.log('CONGRATSSSSSSS, YOU WONNNNNNNN')
+      cornify_add();
+    }
+    // console.log(pressedKeys);
+  })
 </script>
 </body>
 </html>
