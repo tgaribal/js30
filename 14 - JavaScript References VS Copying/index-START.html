@@ -72,7 +72,12 @@
 
     const tim2 = Object.assign({}, person, { age: 30 });
 
-    //note that the social is still a reference here, NOT a nwe object, and so updating tim2.social.twitter will also change tim.social.twitter...they refer to the same object!
+    //note that the social is still a reference here, NOT a nwe object, and so updating tim2.social.twitter 
+    //will also change tim.social.twitter...they refer to the same object!
+
+    //you can use deepclone functions, usually you can find them online (or write your own!), or use the poor 
+    //mans deep clone:
+    const tim3 = JSON.parse(JSON.stringify(tim));
 
   </script>
 
