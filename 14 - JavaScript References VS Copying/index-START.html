@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // and we want to make a copy of it.
+
+
+    // You might think we can just do something like this:
+
+    // however what happens when we update that array?
+    const team2 = players.slice();
+
+    const team3 = [...players];
+
+    const team4 = Array.from(players);
+    const team5 = [].concat(players)
+
+    // now here is the problem!
+
+    // oh no - we have edited the original array too!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+
+    // one day
+
+    // or create a new array and concat the old one in
+
+    // or use the new ES6 Spread
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+        name: 'captain',
+        age: 80
+    }
+
+    // and think we make a copy:
+    const captain = person;
+    captain.number = 99 //this will change person to include person.number = 99 as well
+
+    // how do we take a copy instead?
+
+    const captain2 = Object.assign({}, person, { number: 99, age: 12 } )
+
+    // We will hopefully soon see the object ...spread
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    const tim = {
+        name: 'tim',
+        age: 29,
+        social: {
+            twitter: '@tgaribal',
+            facebook: 'www.facebook.com/tgaribal'
+        }
+    }
+
+    const tim2 = Object.assign({}, person, { age: 30 });
+
+    //note that the social is still a reference here, NOT a nwe object, and so updating tim2.social.twitter 
+    //will also change tim.social.twitter...they refer to the same object!
+
+    //you can use deepclone functions, usually you can find them online (or write your own!), or use the poor 
+    //mans deep clone:
+    const tim3 = JSON.parse(JSON.stringify(tim));
+
+  </script>
+
+</body>
+</html>
